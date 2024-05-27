@@ -40,3 +40,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ```
 npx create-next-app@latest
 ```
+
+
+## Command list
+- npm install react-icons react-hook-form clsx
+- npm i -D prisma
+- npx prisma init
+- npx prisma db push
+- npm install next-auth@latest @prisma/client @next-auth/prisma-adapter bcrypt
+- npm install -D @types/bcrypt
+- npm install axios
+- npm install react-hot-toast
