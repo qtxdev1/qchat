@@ -51,3 +51,4 @@ npx create-next-app@latest
 - npm install -D @types/bcrypt
 - npm install axios
 - npm install react-hot-toast
+- npm install next-superjson-plugin
