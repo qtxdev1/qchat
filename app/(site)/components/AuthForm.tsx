@@ -49,7 +49,6 @@ const AuthForm = () => {
 
   const onSubmit : SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    console.log(data);
 
     if (variant === 'REGISTER') {
       // register
@@ -69,7 +68,6 @@ const AuthForm = () => {
         redirect: false,
       })
       .then((result) => {
-        console.log(result);
         if (result?.error) {
           toast.error('Invalid credentials');
         }
@@ -89,7 +87,6 @@ const AuthForm = () => {
     // NextAuth Social Sign In
     signIn(action, { redirect: false })
     .then((callback) => {
-      console.log("🚀 ~ .then ~ callback:", callback)
       if (callback?.error) {
         toast.error('Invalid Credentials');
       }

@@ -35,7 +35,7 @@ const Header: React.FC<Props> = ({ conversation }) => {
         py-3
         px-4
         lg:px-6
-        justify=between
+        justify-between
         items-center
         shadow-sm
       '

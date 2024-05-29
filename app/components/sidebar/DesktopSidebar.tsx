@@ -13,7 +13,6 @@ type Props = {
 const DesktopSidebar: React.FC<Props> = ({ currentUser }) => {
   const routers = useRouters();
   const [isOpen, setIsOpen] = useState(false);
-  console.log({ currentUser });
 
   return (
     <div
