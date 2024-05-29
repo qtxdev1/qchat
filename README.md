@@ -44,6 +44,7 @@ npx create-next-app@latest
 
 ## Command list
 - npm install react-icons react-hook-form clsx
+- npm install date-fns
 - npm i -D prisma
 - npx prisma init
 - npx prisma db push
@@ -52,3 +53,4 @@ npx create-next-app@latest
 - npm install axios
 - npm install react-hot-toast
 - npm install next-superjson-plugin
+- npm install next-cloudinary

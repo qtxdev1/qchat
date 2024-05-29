@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useMemo } from 'react';
-import { format } from 'util';
+import { format } from 'date-fns';
 
 type Props = {
   data: FullConversationType,
