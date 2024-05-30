@@ -54,3 +54,4 @@ npx create-next-app@latest
 - npm install react-hot-toast
 - npm install next-superjson-plugin
 - npm install next-cloudinary
+- npm install @headlessui/react
