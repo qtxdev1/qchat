@@ -1,6 +1,7 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";;
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
+import { pusherServer } from "@/app/libs/pusher";
 
 type IParams = {
   conversationId?: string;
@@ -14,6 +15,10 @@ export async function POST(
     const {
       conversationId,
     } = params;
+
+    if (!currentUser?.id || !currentUser?.email) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
 
     const conversation = await prisma.conversation.findUnique({
       where: {
@@ -39,14 +44,14 @@ export async function POST(
       return NextResponse.json(conversation);
     }
 
-    const updatedConversation = await prisma.message.update({
+    const updatedMessage = await prisma.message.update({
       where: {
         id: lastMessage.id,
       },
       data: {
         seen: {
           connect: {
-            id: currentUser?.id,
+            id: currentUser.id,
           },
         },
       },
@@ -56,7 +61,18 @@ export async function POST(
       },
     });
 
-    return NextResponse.json(updatedConversation);
+    await pusherServer.trigger(conversationId!, "conversation:update", {
+      id: conversationId,
+      messages: [updatedMessage],
+    });
+
+    if (lastMessage.seenIds.indexOf(currentUser?.id) !== -1) {
+      return NextResponse.json(conversation);
+    }
+
+    await pusherServer.trigger(conversationId!, 'message:update', updatedMessage);
+
+    return NextResponse.json(updatedMessage);
   } catch (error) {
     console.log(error, 'ERROR_MESSAGES_SEEN');
     return new NextResponse("Internal Error", { status: 500 });

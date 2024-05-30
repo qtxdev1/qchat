@@ -55,3 +55,7 @@ npx create-next-app@latest
 - npm install next-superjson-plugin
 - npm install next-cloudinary
 - npm install @headlessui/react
+- npm install react-select
+- npm install pusher pusher-js
+- npm install lodash
+- npm install -D @types/lodash

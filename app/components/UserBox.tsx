@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { User } from '@prisma/client';
 import Avatar from '@/app/components/Avatar';
+import LoadingModal from './LoadingModal';
 
 type Props = {
   data: User;
@@ -24,48 +25,52 @@ const UserBox: React.FC<Props> = ({ data }) => {
     .finally(() => setIsLoading(false));
   }, [data, router]);
 
-
   return (
-    <div
-      onClick={handleClick}
-      className='
-        w-full
-        relative
-        flex
-        items-center
-        space-x-3
-        bg-white
-        p-3
-        hover:bg-neutral-50
-        rounded-lg
-        transition
-        cursor-pointer
-      '
-    >
-      <Avatar user={data} />
-      <div className='min-w-0 flex-1'>
-        <div className='focus:outline-none'>
-          <div
-            className='
-              flex
-              items-center
-              justify-between
-              mb-1
-            '
-          >
-            <p
+    <>
+      {isLoading && (
+        <LoadingModal />
+      )}
+      <div
+        onClick={handleClick}
+        className='
+          w-full
+          relative
+          flex
+          items-center
+          space-x-3
+          bg-white
+          p-3
+          hover:bg-neutral-50
+          rounded-lg
+          transition
+          cursor-pointer
+        '
+      >
+        <Avatar user={data} />
+        <div className='min-w-0 flex-1'>
+          <div className='focus:outline-none'>
+            <div
               className='
-                text-sm
-                font-medium
-                text-gray-900
+                flex
+                items-center
+                justify-between
+                mb-1
               '
             >
-              {data.name}
-            </p>
+              <p
+                className='
+                  text-sm
+                  font-medium
+                  text-gray-900
+                '
+              >
+                {data.name}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
