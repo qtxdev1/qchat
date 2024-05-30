@@ -59,3 +59,4 @@ npx create-next-app@latest
 - npm install pusher pusher-js
 - npm install lodash
 - npm install -D @types/lodash
+- npm install zustand
