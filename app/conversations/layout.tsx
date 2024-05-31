@@ -16,7 +16,7 @@ const ConversationLayout: React.FC<Props> = async({ children }) => {
     <Sidebar>
       <div className='h-full'>
         <ConversationList
-          users={users}
+          users={users!}
           initialItems={conversations}
         />
         {children}
